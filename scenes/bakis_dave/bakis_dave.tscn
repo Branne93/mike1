@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/bakis_dave_sheet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/bakis_dave/bakis_dave.gd" type="Script" id=2]
+[ext_resource path="res://scenes/pratbubbla/pratbubbla.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/dialogue_player/dialogue_player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/dave.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "bakis_Dave"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 339.8, 306.372 )
+
+[node name="bakis_dave" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+dialog_obakis = "res://assets/dialogue_data/dave_obakis.json"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bakis_Dave = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 108.656, -53.8162 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="pratbubbla" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -78.9018, -130.596 )
+z_index = 100
+flipped = true
+
+[node name="dialogue_player" parent="." instance=ExtResource( 4 )]
+dialogue_file = "res://assets/dialogue_data/bakis_dave.json"
+self_talk = false
+
+[node name="obakis" type="Sprite" parent="."]
+visible = false
+position = Vector2( 112.952, -81.0307 )
+texture = ExtResource( 5 )

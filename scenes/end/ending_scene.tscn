@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/mike_dansen_sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/end_scene.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "mike_dans"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("mike_dans:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 3 ]
+}
+
+[node name="ending_scene" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="mike_dans" type="Sprite" parent="."]
+position = Vector2( 373.825, 375.675 )
+texture = ExtResource( 1 )
+hframes = 5
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "mike_dans"
+anims/mike_dans = SubResource( 1 )
